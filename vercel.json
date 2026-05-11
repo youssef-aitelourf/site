@@ -8,12 +8,12 @@
   ],
   "rewrites": [
     {
-      "source": "/portfolio/:path*",
-      "destination": "https://portfolio-2-youssef-ait-elourfs-projects.vercel.app/portfolio/:path*"
+      "source": "/portfolio",
+      "destination": "https://portfolio-2-youssef-ait-elourfs-projects.vercel.app/portfolio"
     },
     {
-      "source": "/cv-adapter/:path*",
-      "destination": "https://cv-adapter-ml-model-youssef-ait-elourfs-projects.vercel.app/cv-adapter/:path*"
+      "source": "/portfolio/:path*",
+      "destination": "https://portfolio-2-youssef-ait-elourfs-projects.vercel.app/portfolio/:path*"
     }
   ]
 }
