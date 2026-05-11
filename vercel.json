@@ -13,7 +13,7 @@
     },
     {
       "source": "/cv-adapter/:path*",
-      "destination": "https://cv-adapter-ml-model-youssef-ait-elourfs-projects.vercel.app/cv-adapter/:path*"
+      "destination": "https://cv-adapter-youssef-ait-elourfs-projects.vercel.app/cv-adapter/:path*"
     }
   ]
 }
