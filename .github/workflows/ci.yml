@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    name: Validate config
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate vercel.json
+        run: |
+          python3 -c "
+          import json, sys
+          with open('vercel.json') as f:
+              config = json.load(f)
+          required = {'rewrites', 'redirects'}
+          missing = required - config.keys()
+          if missing:
+              print(f'Missing keys: {missing}', file=sys.stderr)
+              sys.exit(1)
+          for entry in config.get('rewrites', []):
+              if 'source' not in entry or 'destination' not in entry:
+                  print(f'Invalid rewrite entry: {entry}', file=sys.stderr)
+                  sys.exit(1)
+          print('vercel.json is valid')
+          print(f'  redirects : {len(config.get(\"redirects\", []))}')
+          print(f'  rewrites  : {len(config.get(\"rewrites\", []))}')
+          "

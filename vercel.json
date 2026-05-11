@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/portfolio",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/portfolio/:path*",
+      "destination": "https://portfolio-2-youssef-ait-elourfs-projects.vercel.app/portfolio/:path*"
+    },
+    {
+      "source": "/cv-adapter/:path*",
+      "destination": "https://cv-adapter-ml-model-youssef-ait-elourfs-projects.vercel.app/cv-adapter/:path*"
+    }
+  ]
+}
