@@ -15,13 +15,6 @@
       "source": "/portfolio/:path*",
       "destination": "https://portfolio-2-youssef-ait-elourfs-projects.vercel.app/portfolio/:path*"
     },
-    {
-      "source": "/cv-adapter",
-      "destination": "https://cv-adapter-youssef-ait-elourfs-projects.vercel.app/cv-adapter"
-    },
-    {
-      "source": "/cv-adapter/:path*",
-      "destination": "https://cv-adapter-youssef-ait-elourfs-projects.vercel.app/cv-adapter/:path*"
-    }
+
   ]
 }
