@@ -28,7 +28,8 @@ C'est tout. Le domaine `youssef-aitelourf.com` est lié uniquement à ce projet.
 | Route | Repo | URL Vercel |
 |-------|------|------------|
 | `/portfolio` | [portfolio-2](https://github.com/youssef-aitelourf/portfolio-2) | `portfolio-2-youssef-ait-elourfs-projects.vercel.app` |
-| `/cv-adapter` | [cv-adapter-ML-model](https://github.com/youssef-aitelourf/cv-adapter-ML-model) | `cv-adapter-youssef-ait-elourfs-projects.vercel.app` |
+
+CV Adapter (`/cv-adapter`, `/admin/cv-adapter`) est **désactivé** — les requêtes sont redirigées vers `/portfolio` ou `/admin`.
 
 ## Structure
 

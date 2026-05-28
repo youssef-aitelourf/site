@@ -46,7 +46,8 @@ curl -X PATCH "https://api.vercel.com/v9/projects/<PROJECT_ID>?teamId=team_folYz
 | Route | Vercel project | Stable URL |
 |-------|---------------|------------|
 | `/portfolio` | `portfolio-2` | `portfolio-2-youssef-ait-elourfs-projects.vercel.app` |
-| `/cv-adapter` | `cv-adapter` | `cv-adapter-youssef-ait-elourfs-projects.vercel.app` |
+
+CV Adapter is **disabled** (`/cv-adapter`, `/admin/cv-adapter` redirect away; no rewrites).
 
 ## Rules
 
