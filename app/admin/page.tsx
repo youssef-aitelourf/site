@@ -11,9 +11,14 @@ export default async function AdminPage() {
       <h1 className="mb-2 text-3xl font-bold tracking-tight">Admin</h1>
       <p className="mb-10 text-slate-500">youssef-aitelourf.com</p>
 
-      <p className="rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-600">
-        Aucun outil actif pour le moment. CV Adapter est désactivé.
-      </p>
+      <div className="grid gap-3">
+        <Link
+          href="/admin/health-app"
+          className="rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-medium text-slate-700 hover:bg-slate-100 transition-colors"
+        >
+          Health App — Nutrition, entraînement & poids
+        </Link>
+      </div>
 
       {isSuperAdmin && (
         <nav className="mt-8">
