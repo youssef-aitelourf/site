@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const PORTFOLIO_URL = "https://portfolio-2-youssef-ait-elourfs-projects.vercel.app";
 const HEALTH_APP_URL =
   process.env.HEALTH_APP_URL ??
-  "https://health-app-youssef-ait-elourfs-projects.vercel.app";
+  "https://health-app-seven-orpin.vercel.app";
 
 const nextConfig: NextConfig = {
   env: {

@@ -17,11 +17,11 @@
     },
     {
       "source": "/admin/health-app",
-      "destination": "https://health-app-youssef-ait-elourfs-projects.vercel.app/admin/health-app"
+      "destination": "https://health-app-seven-orpin.vercel.app/admin/health-app"
     },
     {
       "source": "/admin/health-app/:path*",
-      "destination": "https://health-app-youssef-ait-elourfs-projects.vercel.app/admin/health-app/:path*"
+      "destination": "https://health-app-seven-orpin.vercel.app/admin/health-app/:path*"
     }
   ]
 }
