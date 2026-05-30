@@ -7,7 +7,9 @@ function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const from = searchParams.get("from") ?? "/admin";
-  const inactive = searchParams.get("error") === "inactive";
+  const errorParam = searchParams.get("error");
+  const inactive = errorParam === "inactive";
+  const profileError = errorParam === "profile";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,6 +35,7 @@ function LoginForm() {
       }
 
       router.push(from);
+      router.refresh();
     } catch {
       setError("Impossible de contacter le serveur");
     } finally {
@@ -49,6 +52,11 @@ function LoginForm() {
         {inactive && (
           <p className="mb-4 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">
             Ce compte est désactivé.
+          </p>
+        )}
+        {profileError && (
+          <p className="mb-4 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">
+            Profil introuvable. Contacte l&apos;administrateur.
           </p>
         )}
 

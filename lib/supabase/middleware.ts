@@ -41,13 +41,19 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  const { data: profile } = await supabase
+  const { data: profile, error: profileError } = await supabase
     .from("profiles")
     .select("role, active")
     .eq("id", user.id)
     .single();
 
-  if (!profile?.active) {
+  if (profileError || !profile) {
+    const loginUrl = new URL("/admin/login", request.url);
+    loginUrl.searchParams.set("error", "profile");
+    return NextResponse.redirect(loginUrl);
+  }
+
+  if (!profile.active) {
     await supabase.auth.signOut();
     const loginUrl = new URL("/admin/login", request.url);
     loginUrl.searchParams.set("error", "inactive");
