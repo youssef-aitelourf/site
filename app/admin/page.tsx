@@ -1,14 +1,10 @@
-"use client";
+import Link from "next/link";
+import { getProfile } from "@/lib/auth";
+import LogoutButton from "./logout-button";
 
-import { useRouter } from "next/navigation";
-
-export default function AdminPage() {
-  const router = useRouter();
-
-  async function handleLogout() {
-    await fetch("/api/auth", { method: "DELETE" });
-    router.push("/admin/login");
-  }
+export default async function AdminPage() {
+  const profile = await getProfile();
+  const isSuperAdmin = profile?.role === "super_admin";
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-16">
@@ -19,12 +15,18 @@ export default function AdminPage() {
         Aucun outil actif pour le moment. CV Adapter est désactivé.
       </p>
 
-      <button
-        onClick={handleLogout}
-        className="mt-12 text-sm text-slate-400 hover:text-slate-600"
-      >
-        Se déconnecter
-      </button>
+      {isSuperAdmin && (
+        <nav className="mt-8">
+          <Link
+            href="/admin/users"
+            className="text-sm font-medium text-slate-700 underline-offset-2 hover:underline"
+          >
+            Gérer les utilisateurs
+          </Link>
+        </nav>
+      )}
+
+      <LogoutButton />
     </main>
   );
 }
