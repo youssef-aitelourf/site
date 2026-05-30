@@ -6,6 +6,7 @@ import type { Role } from "@/lib/auth";
 
 export default function CreateUserForm() {
   const router = useRouter();
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState<Role>("member");
@@ -21,7 +22,12 @@ export default function CreateUserForm() {
       const res = await fetch("/api/admin/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, role }),
+        body: JSON.stringify({
+          username,
+          email: email.trim() || undefined,
+          password,
+          role,
+        }),
       });
 
       const data = await res.json();
@@ -30,6 +36,7 @@ export default function CreateUserForm() {
         return;
       }
 
+      setUsername("");
       setEmail("");
       setPassword("");
       setRole("member");
@@ -49,14 +56,35 @@ export default function CreateUserForm() {
       <h2 className="mb-4 text-lg font-semibold text-slate-900">Créer un compte</h2>
       <div className="grid gap-3">
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700">Email</label>
+          <label className="mb-1 block text-sm font-medium text-slate-700">
+            Username <span className="text-slate-400">(connexion)</span>
+          </label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            minLength={3}
+            maxLength={32}
+            pattern="[a-zA-Z0-9_-]+"
+            autoComplete="off"
+            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+          />
+          <p className="mt-1 text-xs text-slate-500">3–32 caractères : lettres, chiffres, _ -</p>
+        </div>
+        <div>
+          <label className="mb-1 block text-sm font-medium text-slate-700">
+            Email <span className="text-slate-400">(optionnel)</span>
+          </label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
             className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
           />
+          <p className="mt-1 text-xs text-slate-500">
+            Si vide : username@accounts.youssef-aitelourf.com (interne)
+          </p>
         </div>
         <div>
           <label className="mb-1 block text-sm font-medium text-slate-700">

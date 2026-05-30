@@ -18,6 +18,7 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const email = process.env.SEED_EMAIL;
 const password = process.env.SEED_PASSWORD;
+const username = (process.env.SEED_USERNAME ?? "admin").toLowerCase();
 
 const missing = [
   ["SUPABASE_URL", supabaseUrl],
@@ -85,7 +86,7 @@ async function ensureSuperAdminUser() {
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
-    .update({ role: "super_admin", active: true, email })
+    .update({ role: "super_admin", active: true, email, username })
     .eq("id", userId)
     .select("id, role, active")
     .maybeSingle();
@@ -97,7 +98,7 @@ async function ensureSuperAdminUser() {
   if (!profile) {
     const { data: inserted, error: insertError } = await supabase
       .from("profiles")
-      .insert({ id: userId, role: "super_admin", active: true })
+      .insert({ id: userId, role: "super_admin", active: true, email, username })
       .select("id, role, active")
       .single();
 

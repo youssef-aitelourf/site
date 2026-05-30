@@ -12,7 +12,7 @@ export default async function UsersPage() {
   const admin = createAdminClient();
   const { data: users, error } = await admin
     .from("profiles")
-    .select("id, email, role, active, created_at")
+    .select("id, username, email, role, active, created_at")
     .order("created_at", { ascending: false });
 
   return (
@@ -36,6 +36,7 @@ export default async function UsersPage() {
         <table className="w-full text-sm">
           <thead className="bg-slate-50 text-left text-slate-600">
             <tr>
+              <th className="px-4 py-3 font-medium">Username</th>
               <th className="px-4 py-3 font-medium">Email</th>
               <th className="px-4 py-3 font-medium">Rôle</th>
               <th className="px-4 py-3 font-medium">Actif</th>
@@ -45,14 +46,15 @@ export default async function UsersPage() {
             {users && users.length > 0 ? (
               users.map((user) => (
                 <tr key={user.id} className="border-t border-slate-200">
-                  <td className="px-4 py-3 text-slate-900">{user.email ?? "—"}</td>
+                  <td className="px-4 py-3 font-medium text-slate-900">{user.username ?? "—"}</td>
+                  <td className="px-4 py-3 text-slate-600">{user.email ?? "—"}</td>
                   <td className="px-4 py-3 text-slate-600">{user.role}</td>
                   <td className="px-4 py-3 text-slate-600">{user.active ? "oui" : "non"}</td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={3} className="px-4 py-6 text-center text-slate-500">
+                <td colSpan={4} className="px-4 py-6 text-center text-slate-500">
                   Aucun utilisateur trouvé.
                 </td>
               </tr>

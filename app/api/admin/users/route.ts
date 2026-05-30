@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import type { Role } from "@/lib/auth";
+import {
+  internalEmailForUsername,
+  isValidUsername,
+  normalizeUsername,
+} from "@/lib/login";
 
 const ROLES: Role[] = ["super_admin", "admin", "member"];
 
@@ -26,16 +31,18 @@ export async function POST(request: NextRequest) {
   }
 
   const body = (await request.json()) as {
-    email: string;
+    username: string;
+    email?: string;
     password: string;
     role: Role;
   };
 
-  const email = body.email?.trim().toLowerCase();
+  const username = normalizeUsername(body.username ?? "");
+  const emailInput = body.email?.trim().toLowerCase();
   const password = body.password;
   const role = body.role;
 
-  if (!email || !password || !ROLES.includes(role)) {
+  if (!isValidUsername(username) || !password || !ROLES.includes(role)) {
     return NextResponse.json({ error: "Données invalides" }, { status: 400 });
   }
 
@@ -46,7 +53,19 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  const email = emailInput || internalEmailForUsername(username);
+
   const admin = createAdminClient();
+
+  const { data: existing } = await admin
+    .from("profiles")
+    .select("id")
+    .eq("username", username)
+    .maybeSingle();
+
+  if (existing) {
+    return NextResponse.json({ error: "Ce username est déjà pris" }, { status: 400 });
+  }
 
   const { data: created, error: createError } = await admin.auth.admin.createUser({
     email,
@@ -65,7 +84,13 @@ export async function POST(request: NextRequest) {
 
   const { error: profileError } = await admin
     .from("profiles")
-    .update({ role, email, created_by: user.id, active: true })
+    .update({
+      role,
+      email,
+      username,
+      created_by: user.id,
+      active: true,
+    })
     .eq("id", userId);
 
   if (profileError) {
