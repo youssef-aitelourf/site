@@ -4,6 +4,16 @@
       "source": "/",
       "destination": "/portfolio",
       "permanent": true
+    },
+    {
+      "source": "/admin/health-app",
+      "destination": "/nutrition",
+      "permanent": false
+    },
+    {
+      "source": "/admin/health-app/:path*",
+      "destination": "/nutrition",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -16,12 +26,12 @@
       "destination": "https://portfolio-2-youssef-ait-elourfs-projects.vercel.app/portfolio/:path*"
     },
     {
-      "source": "/admin/health-app",
-      "destination": "https://health-app-seven-orpin.vercel.app/admin/health-app"
+      "source": "/nutrition",
+      "destination": "https://nutrition-youssef-ait-elourfs-projects.vercel.app/nutrition"
     },
     {
-      "source": "/admin/health-app/:path*",
-      "destination": "https://health-app-seven-orpin.vercel.app/admin/health-app/:path*"
+      "source": "/nutrition/:path*",
+      "destination": "https://nutrition-youssef-ait-elourfs-projects.vercel.app/nutrition/:path*"
     }
   ]
 }

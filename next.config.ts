@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
 const PORTFOLIO_URL = "https://portfolio-2-youssef-ait-elourfs-projects.vercel.app";
-const HEALTH_APP_URL =
-  process.env.HEALTH_APP_URL ??
-  "https://health-app-seven-orpin.vercel.app";
+const NUTRITION_URL =
+  process.env.NUTRITION_URL ??
+  "https://nutrition-youssef-ait-elourfs-projects.vercel.app";
 
 const nextConfig: NextConfig = {
   env: {
@@ -18,14 +18,17 @@ const nextConfig: NextConfig = {
       { source: "/cv-adapter/:path*", destination: "/portfolio", permanent: false },
       { source: "/admin/cv-adapter", destination: "/admin", permanent: false },
       { source: "/admin/cv-adapter/:path*", destination: "/admin", permanent: false },
+      // health-app remplacé par nutrition
+      { source: "/admin/health-app", destination: "/nutrition", permanent: false },
+      { source: "/admin/health-app/:path*", destination: "/nutrition", permanent: false },
     ];
   },
   async rewrites() {
     return [
       { source: "/portfolio", destination: `${PORTFOLIO_URL}/portfolio` },
       { source: "/portfolio/:path*", destination: `${PORTFOLIO_URL}/portfolio/:path*` },
-      { source: "/admin/health-app", destination: `${HEALTH_APP_URL}/admin/health-app` },
-      { source: "/admin/health-app/:path*", destination: `${HEALTH_APP_URL}/admin/health-app/:path*` },
+      { source: "/nutrition", destination: `${NUTRITION_URL}/nutrition` },
+      { source: "/nutrition/:path*", destination: `${NUTRITION_URL}/nutrition/:path*` },
     ];
   },
 };
