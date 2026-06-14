@@ -66,7 +66,7 @@ export async function updateSession(request: NextRequest) {
     }
   }
 
-  if (pathname.startsWith("/admin/health-app")) {
+  if (pathname.startsWith("/admin/nutrition")) {
     const allowed = ["super_admin", "admin", "member"];
     if (!allowed.includes(profile.role)) {
       return NextResponse.redirect(new URL("/admin", request.url));

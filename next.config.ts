@@ -13,22 +13,22 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/", destination: "/portfolio", permanent: true },
-      // CV Adapter désactivé
       { source: "/cv-adapter", destination: "/portfolio", permanent: false },
       { source: "/cv-adapter/:path*", destination: "/portfolio", permanent: false },
       { source: "/admin/cv-adapter", destination: "/admin", permanent: false },
       { source: "/admin/cv-adapter/:path*", destination: "/admin", permanent: false },
-      // health-app remplacé par nutrition
-      { source: "/admin/health-app", destination: "/nutrition", permanent: false },
-      { source: "/admin/health-app/:path*", destination: "/nutrition", permanent: false },
+      { source: "/admin/health-app", destination: "/admin", permanent: false },
+      { source: "/admin/health-app/:path*", destination: "/admin", permanent: false },
+      { source: "/nutrition", destination: "/admin/nutrition", permanent: false },
+      { source: "/nutrition/:path*", destination: "/admin/nutrition", permanent: false },
     ];
   },
   async rewrites() {
     return [
       { source: "/portfolio", destination: `${PORTFOLIO_URL}/portfolio` },
       { source: "/portfolio/:path*", destination: `${PORTFOLIO_URL}/portfolio/:path*` },
-      { source: "/nutrition", destination: `${NUTRITION_URL}/nutrition` },
-      { source: "/nutrition/:path*", destination: `${NUTRITION_URL}/nutrition/:path*` },
+      { source: "/admin/nutrition", destination: `${NUTRITION_URL}/admin/nutrition` },
+      { source: "/admin/nutrition/:path*", destination: `${NUTRITION_URL}/admin/nutrition/:path*` },
     ];
   },
 };

@@ -13,10 +13,10 @@ export default async function AdminPage() {
 
       <div className="grid gap-3">
         <Link
-          href="/admin/health-app"
+          href="/admin/nutrition"
           className="rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-medium text-slate-700 hover:bg-slate-100 transition-colors"
         >
-          Health App — Nutrition, entraînement & poids
+          Nutrition — Suivi calories & macros
         </Link>
       </div>
 

@@ -7,12 +7,22 @@
     },
     {
       "source": "/admin/health-app",
-      "destination": "/nutrition",
+      "destination": "/admin",
       "permanent": false
     },
     {
       "source": "/admin/health-app/:path*",
-      "destination": "/nutrition",
+      "destination": "/admin",
+      "permanent": false
+    },
+    {
+      "source": "/nutrition",
+      "destination": "/admin/nutrition",
+      "permanent": false
+    },
+    {
+      "source": "/nutrition/:path*",
+      "destination": "/admin/nutrition",
       "permanent": false
     }
   ],
@@ -26,12 +36,12 @@
       "destination": "https://portfolio-2-youssef-ait-elourfs-projects.vercel.app/portfolio/:path*"
     },
     {
-      "source": "/nutrition",
-      "destination": "https://nutrition-youssef-ait-elourfs-projects.vercel.app/nutrition"
+      "source": "/admin/nutrition",
+      "destination": "https://nutrition-youssef-ait-elourfs-projects.vercel.app/admin/nutrition"
     },
     {
-      "source": "/nutrition/:path*",
-      "destination": "https://nutrition-youssef-ait-elourfs-projects.vercel.app/nutrition/:path*"
+      "source": "/admin/nutrition/:path*",
+      "destination": "https://nutrition-youssef-ait-elourfs-projects.vercel.app/admin/nutrition/:path*"
     }
   ]
 }
